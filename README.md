@@ -16,9 +16,16 @@ The trained model stays inside the hospital data stack, and patient records neve
 
 ## Live demo
 
-**App:** https://hospital-readmission-prediction-wit-xi.vercel.app/
+**App:** [hospital-readmission-prediction-wit.vercel.app](https://hospital-readmission-prediction-wit.vercel.app/)
 
-Sammy includes a realistic login flow and a synthetic demo experience, so the UI remains usable even when the live backend is offline.
+Sammy is gated behind a realistic 3-step hospital login. Use these demo credentials to explore the full experience:
+
+- Hospital access code: `HX-7729`
+- Email: `clinician@hospital-x.org`
+- Password: `sammy-demo`
+- One-time passcode: `424242`
+
+> The demo login shows representative synthetic data. With real clinician credentials and the backend connected, the app switches to live AWS Aurora data automatically. The live AWS backend may be paused outside judging to stay within credit limits — the app gracefully falls back to demo data, so testing is never blocked.
 
 ## What is Sammy?
 
