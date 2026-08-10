@@ -16,7 +16,7 @@ The trained model stays inside the hospital data stack, and patient records neve
 
 ## Live demo
 
-**App:** https://hospital-readmission-prediction-wit.vercel.app/
+**App:** https://hospital-readmission-prediction-wit-xi.vercel.app/
 
 Sammy includes a realistic login flow and a synthetic demo experience, so the UI remains usable even when the live backend is offline.
 
