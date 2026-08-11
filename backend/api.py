@@ -132,20 +132,26 @@ def list_patients():
 
 
 #  Predict + explain one patient, then save to Aurora 
-@app.get("/predict/{patient_id}")
-def predict(patient_id: int):
+@app.get("/predict/{patient_ref}")
+def predict(patient_ref: str):
     conn = get_conn()
     cur = conn.cursor(cursor_factory=RealDictCursor)
 
+    patient_ref = patient_ref.strip()
+
     # 1. Fetch the patient.
     cur.execute(
-        "SELECT patient_id, external_ref, features FROM patients WHERE patient_id = %s",
-        (patient_id,),
+        """
+        SELECT patient_id, external_ref, features
+        FROM patients
+        WHERE patient_id::text = %s OR external_ref = %s
+        """,
+        (patient_ref, patient_ref),
     )
     row = cur.fetchone()
     if row is None:
         cur.close(); conn.close()
-        return {"error": f"No patient with id {patient_id}"}
+        return {"error": f"No patient with id or external ref {patient_ref}"}
 
     # 2. Encode + predict + explain.
     X = preprocess_patient(row["features"])
@@ -156,7 +162,7 @@ def predict(patient_id: int):
         INSERT INTO predictions
           (patient_id, model_id, probability, risk_tier, predicted_label, threshold_used)
         VALUES (%s, %s, %s, %s, %s, %s) RETURNING prediction_id;
-    """, (patient_id, MODEL_ID, result["probability"], result["risk_tier"],
+        """, (row["patient_id"], MODEL_ID, result["probability"], result["risk_tier"],
           result["prediction"], THRESHOLD))
     prediction_id = cur.fetchone()["prediction_id"]
 

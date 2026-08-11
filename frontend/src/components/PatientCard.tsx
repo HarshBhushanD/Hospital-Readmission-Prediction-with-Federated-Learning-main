@@ -20,7 +20,7 @@ export function PatientCard({
       transition={{ delay: Math.min(index * 0.03, 0.4), duration: 0.4 }}
     >
       <Link
-        href={`/patients/${patient.patient_id}`}
+        href={`/patients/${patient.external_ref}`}
         className="group block rounded-2xl glass p-5 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lift"
       >
         <div className="flex items-start justify-between gap-3">
@@ -53,7 +53,7 @@ export function PatientCard({
 export function PatientRow({ patient }: { patient: PatientSummary }) {
   return (
     <Link
-      href={`/patients/${patient.patient_id}`}
+      href={`/patients/${patient.external_ref}`}
       className="grid grid-cols-[1fr_1.4fr_0.8fr_auto] items-center gap-4 rounded-xl px-4 py-3 transition hover:bg-ink-900/[0.03]"
     >
       <span className="font-semibold text-ink-900">{patient.external_ref}</span>
