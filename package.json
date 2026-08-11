@@ -5,9 +5,8 @@
     "frontend"
   ],
   "scripts": {
-    "build": "npm run build --workspace frontend && node scripts/copy-next-output.mjs",
+    "build": "npm run build --workspace frontend",
     "dev": "npm run dev --workspace frontend",
-    "start": "npm run start --workspace frontend",
-    "vercel-build": "npm run build"
+    "start": "npm run start --workspace frontend"
   }
-}
+}
