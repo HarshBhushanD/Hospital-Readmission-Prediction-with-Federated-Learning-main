@@ -1,11 +1,10 @@
 import PatientDetailClient from "./patient-detail-client";
 
-export default function PatientDetailPage({
+export default async function PatientDetailPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  return params.then((resolvedParams) => (
-    <PatientDetailClient patientId={resolvedParams.id} />
-  ));
+  const { id } = await params;
+  return <PatientDetailClient patientId={id} />;
 }
