@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { BigGauge } from "@/components/BigGauge";
@@ -41,10 +40,8 @@ function listToText(items: string[]): string {
   return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
 }
 
-export default function PatientDetailClient() {
+export default function PatientDetailClient({ patientId }: { patientId: string }) {
   const { isAuthed, ready } = useRequireAuth();
-  const params = useParams();
-  const patientId = String(params.id);
 
   const [prediction, setPrediction] = useState<Prediction | null>(null);
   const [note, setNote] = useState("");
