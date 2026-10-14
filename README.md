@@ -123,4 +123,4 @@ Real patient data is not stored in this repository. The public demo uses synthet
 
 - The frontend is deployed through Vercel.
 - The repo includes `vercel.json` so Vercel builds the `frontend/` workspace correctly.
-- The project is configured to use the patched Next.js 15.5.23 release.
+- The project is configured to use the patched Next.js 15.5.23.
